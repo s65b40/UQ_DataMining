@@ -1,2 +1,2 @@
-# UQ_DateMining
+# UQ_DataMining
 Data Mining course at UQ.

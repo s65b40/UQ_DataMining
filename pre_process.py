@@ -50,6 +50,106 @@ def sale_to_trans(s_addr, d_addr):
     end = time.clock()
     print "Done! With a time comsuming of %0.2f seconds" % (end - start)
     return
-sale_to_trans("/Users/hcwang/Desktop/dm/sales.xlsx", "/Users/hcwang/Desktop/dm/sales_mod.xls")
+'''
+def sales_to_pieces(s_addr, d_addr):
+    start = time.clock()
+    newbook = xlwt.Workbook(encoding='utf-8', style_compression=0)
+    newsheet = newbook.add_sheet('sheet1', cell_overwrite_ok=True)
+    items = xlrd.open_workbook(s_addr).sheet_by_index(0)
+
+    for i in xrange(1000):
+
+
+
+    newbook.save(d_addr)
+'''
+
+def mapping(s_addr, tr_addr):
+    '''
+    Because the products in the transitions are not classified by the type of product
+    :param s_addr:
+    :param d_addr:
+    :return:
+    '''
+    map_dic = {}        #{type:[list:keys of products}
+    type_dic = {}       #{type:num_order}
+    pro_dic = {}        #{product:type num}
+    #newbook = xlwt.Workbook(encoding='utf-8', style_compression=0)
+    #newsheet = newbook.add_sheet('sheet1', cell_overwrite_ok=True)
+    items = xlrd.open_workbook(s_addr).sheet_by_index(0)
+    for i in xrange(1, items.nrows):
+        key_p = int(items.row_values(i)[0])
+        #print key_p
+        type_p = items.row_values(i)[8]
+        #print type_p
+        if map_dic.has_key(type_p):
+            map_dic[type_p].append(key_p)
+            #print type(map_dic[type_p])
+        else:
+            map_dic[type_p] = [key_p]
+    #print map_dic
+    #print len(map_dic)
+    i = 0
+    for j in map_dic:
+        type_dic[j] = i
+        for k in map_dic[j]:
+            pro_dic[k] = i
+        i += 1
+        #print map_dic[j]
+    print type_dic
+    print pro_dic
+
+
+    trans = xlrd.open_workbook(tr_addr).sheet_by_index(0)
+    newbook = xlwt.Workbook(encoding='utf-8', style_compression=0)
+    newsheet = newbook.add_sheet('sheet1', cell_overwrite_ok=True)
+    newsheet2 = newbook.add_sheet('sheet2', cell_overwrite_ok=True)
+    newsheet3 = newbook.add_sheet('sheet3', cell_overwrite_ok=True)
+    newsheet4 = newbook.add_sheet('sheet4', cell_overwrite_ok=True)
+    #wrow = 0
+    for i in range(1, trans.nrows):
+        j = 1
+        try:
+            #print trans.row_values(i)[j]
+            while type(trans.row_values(i)[j]) == type(1.0):
+                #print pro_dic[int(trans.row_values(i)[j])]
+                newsheet.write(i, j, pro_dic[int(trans.row_values(i)[j])])
+                j += 1
+        except:
+            pass
+    '''
+    map_dic = {}        #{type:[list:keys of products}
+    type_dic = {}       #{type:num_order}
+    pro_dic = {}        #{product:type num}
+    '''
+    a = 0
+    for i in map_dic:
+        b = 0
+        newsheet2.write(a, b, i)
+        b += 1
+        for j in map_dic[i]:
+            newsheet2.write(a, b, j)
+            b += 1
+        a += 1
+    a = 0
+    for i in type_dic:
+        newsheet3.write(a, 0, i)
+        newsheet3.write(a, 1, type_dic[i])
+        a += 1
+
+    a = 0
+    for i in pro_dic:
+        newsheet4.write(a, 0, i)
+        newsheet4.write(a, 1, pro_dic[i])
+        a += 1
+    newbook.save("/Users/hcwang/OneDrive/1-UQ/2017s2/DM/UQ_DataMining/processed_data/sales_m_mod.xls")
+    return 0
+
+
+
+
+#sale_to_trans("/Users/hcwang/Desktop/dm/sales.xlsx", "/Users/hcwang/Desktop/dm/sales_mod.xls")
+mapping("/Users/hcwang/OneDrive/1-UQ/2017s2/DM/UQ_DataMining/raw_data/product.xlsx"
+        , "/Users/hcwang/OneDrive/1-UQ/2017s2/DM/UQ_DataMining/processed_data/sales_mod.xls")
 
 
