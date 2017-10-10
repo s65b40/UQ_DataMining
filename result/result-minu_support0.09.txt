@@ -1,0 +1,2 @@
+The frequent items set with 1 of the number of items:
+['Soup']	['Fresh Vegetables']	['Cheese']	['Cookies']	['Fresh Fruit']	['Dried Fruit']	

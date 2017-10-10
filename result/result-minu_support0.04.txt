@@ -1,0 +1,4 @@
+The frequent items set with 1 of the number of items:
+['Juice']	['Canned Vegetables']	['Cereal']	['Soup']	['Deli Meats']	['Sliced Bread']	['Frozen Vegetables']	['Paper Wipes']	['Peanut Butter']	['Shampoo']	['Spices']	['Pasta']	['Frozen Chicken']	['Eggs']	['French Fries']	['Fresh Vegetables']	['Cheese']	['Candles']	['Popsicles']	['Muffins']	['Nuts']	['Batteries']	['Wine']	['Personal Hygiene']	['Coffee']	['Chocolate Candy']	['Cooking Oil']	['Pizza']	['Chips']	['Bologna']	['Hot Dogs']	['Cookies']	['Fresh Fruit']	['Dips']	['Deli Salads']	['Soda']	['Lightbulbs']	['Milk']	['Dried Fruit']	['Preserves']	['Waffles']	
+The frequent items set with 2 of the number of items:
+['Fresh Vegetables', 'Fresh Fruit']	
